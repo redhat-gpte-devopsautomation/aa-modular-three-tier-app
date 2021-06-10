@@ -1,6 +1,6 @@
-- hosts: control
-  tasks:
-    - debug:
+# - hosts: control
+#   tasks:
+#     - debug:
       
 - name: Add subscription
   hosts: load_balancers,database_servers,backend_servers
@@ -13,7 +13,7 @@
         nmcli connection modify "System eth0"
         ipv4.ignore-auto-dns yes
         ipv4.dns {{ hostvars['control'].ansible_default_ipv4.address }}
-        +ipv4.dns {{ hostvars['control'].ansible_dns.nameservers.0 }}
+        +ipv4.dns {{ hostvars['control'].ansible_dns.nameservers.1 }}
         +ipv4.dns 8.8.8.8
     
     - name: Restart NetworkManager
