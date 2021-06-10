@@ -1,6 +1,6 @@
 ---
 - name: Play to setup apache servers
-  hosts: apps
+  hosts: backend_servers
   tasks:
     - debug:
         msg: "Start Apache server setup"
