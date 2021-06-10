@@ -1,7 +1,20 @@
-- name: prepare.yml
+- name: Add subscription
   hosts: all
   gather_facts: false
   tasks:
+    - name: Insert DNS IP
+      command: >-
+        nmcli connection modify "System eth0"
+        ipv4.ignore-auto-dns yes
+        ipv4.dns {{ ansible_default_ipv4.address }}
+        +ipv4.dns {{ ansible_dns.nameservers.0 }}
+        +ipv4.dns 8.8.8.8
+    
+    - name: Restart NetworkManager
+      service:
+        name: NetworkManager
+        state: restarted
+
     - name: install katello-ca-consumer package
       yum:
         name: http://satellite.example.com/pub/katello-ca-consumer-latest.noarch.rpm
