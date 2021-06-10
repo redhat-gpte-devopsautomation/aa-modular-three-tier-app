@@ -3,7 +3,8 @@
 apache_packages: 
   - httpd
   - php
-  - php-mysql
+  - php-mysqlnd
+  # - php-mysql
 
 apache_services: 
   - httpd
