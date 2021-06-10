@@ -1,6 +1,6 @@
 ---
 - name: Play to setup Haproxy
-  hosts: frontends
+  hosts: load_balancers
   tasks:
     - debug:
         msg: "Start HAproxy server setup"
