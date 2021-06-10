@@ -1,8 +1,9 @@
 - name: Add subscription
-  hosts: load_balacers,database_servers,backend_servers
+  hosts: load_balancers,database_servers,backend_servers
   gather_facts: true
   tasks:
-
+    - debug:
+        msg: "{{ hostvars['control']ansible_default_ipv4.address }}{{ hostvars['control']ansible_dns.nameservers.0 }} "
     - name: Insert DNS IP
       command: >-
         nmcli connection modify "System eth0"
