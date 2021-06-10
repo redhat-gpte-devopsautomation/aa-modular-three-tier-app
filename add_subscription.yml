@@ -7,7 +7,7 @@
   gather_facts: true
   tasks:
     - debug:
-        msg: "{{ hostvars['control'].ansible_default_ipv4.address }}{{ hostvars['control'].ansible_dns.nameservers.0 }} "
+        msg: "{{ hostvars['control'].ansible_default_ipv4.address }}, {{ hostvars['control'].ansible_dns.nameservers.0 }} "
     - name: Insert DNS IP
       command: >-
         nmcli connection modify "System eth0"
@@ -24,6 +24,7 @@
     - name: install katello-ca-consumer package
       yum:
         name: http://satellite.example.com/pub/katello-ca-consumer-latest.noarch.rpm
+        disable_gpg_check: true
         state: present
 
     - name: register system and attach subs
