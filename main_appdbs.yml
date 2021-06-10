@@ -1,7 +1,7 @@
 ---
 
 - name: Play to setup mysql server
-  hosts: appdbs
+  hosts: database_servers
   tasks:
     - debug:
         msg: "Start Mysql server setup"
